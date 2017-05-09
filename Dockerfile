@@ -25,5 +25,6 @@ RUN /tmp/setup/setup.sh && rm -r /tmp/setup
 COPY inetd.conf /etc/inetd.conf
 
 EXPOSE 80 443 23 993 995 2020 5222 587 110 143 465 504 25
+VOLUME ["/etc/citadel", "/var/lib/citadel", "/var/run/citadel"]
 CMD ["/usr/local/bin/boot-supervisord"]
 
