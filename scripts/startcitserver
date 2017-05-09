@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+set -x
+
+# initialization per init script
+RUNDIR=/var/run/citadel
+        if test ! -d $RUNDIR; then
+            mkdir -p $RUNDIR
+            chmod go+rx $RUNDIR
+        fi
+
+if [ -z "$CITSERVER_ARGS" ]; then
+  CITSERVER_ARGS="-x3 -lmail -t/dev/null"
+fi
+exec /usr/sbin/citserver $CITSERVER_ARGS
+

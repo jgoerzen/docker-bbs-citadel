@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -e
+set -x
+
+# From init script
+DROP_TO_UID=`id -u nobody`
+RUNDIR=/var/run/webcit
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+DESC="Citadel Groupware Webserver "
+NAME=webcit
+DAEMON=/usr/sbin/$NAME
+DAEMON_ARGS=""
+PIDFILE=$RUNDIR/$NAME.pid
+SCRIPTNAME=/etc/init.d/webcit
+SENDCOMMAND=/usr/sbin/sendcommand
+DEFAULT=/etc/default/webcit
+LOGDIR=/var/log/webcit/
+DROP_TO_UID=`id -u nobody`
+
+
+. /etc/default/webcit
+
+        # for ubuntu: check our volatile dirs.
+        if test ! -d $RUNDIR; then
+            mkdir -p $RUNDIR
+        fi
+if test -z "$TZ"; then
+        if test -e /etc/timezone; then
+                TZ=`cat /etc/timezone`
+                export TZ
+        fi
+fi
+
+CMDLINE="-u $DROP_TO_UID"
+
+if [ "$1" = "https" ]; then
+  CMDLINE="$CMDLINE -p$WEBCIT_HTTPS_PORT -s"
+else
+  CMDLINE="$CMDLINE -p$WEBCIT_HTTP_PORT"
+fi
+
+
+
+exec $DAEMON -u $DROP_TO_UID $CMDLINE $WEBCIT_CITADEL_IP \
+     $WEBCIT_CITADEL_PORT "" "$LISTEN"  "$WEBCIT_APACHEFLAG" -t/dev/stdout
+
