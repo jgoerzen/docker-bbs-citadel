@@ -1,5 +1,5 @@
-citadel-server	citadel/Password_again	password	thav7phaibohp8Iriengieh
-citadel-server	citadel/Password	password	thav7phaibohp8Iriengieh
+citadel-server	citadel/Password_again	password	thav7phI
+citadel-server	citadel/Password	password	thav7phI
 citadel-server	citadel/LDAPServer	string	0.0.0.0
 citadel-webcit	citadel/WebcitApacheIntegration	select	Internal
 citadel-server	citadel/LoginType	select	Internal

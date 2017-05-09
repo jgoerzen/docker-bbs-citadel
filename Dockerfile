@@ -1,4 +1,4 @@
-FROM jgoerzen/supervisor:stretch
+FROM jgoerzen/supervisor:jessie
 MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN apt-get update && \
     apt-get -y -u dist-upgrade && \
@@ -9,13 +9,13 @@ RUN apt-get update && \
             apt-get clean
 COPY debconf-selections /tmp/
 # The initial configuration requires that citserver
-# be running.  invoke-rc.d prevents this, thus preventing
+# be running.  policy-rc.d prevents this, thus preventing
 # configuration from taking hold.
 RUN debconf-set-selections /tmp/debconf-selections && \
-    mv -vi /usr/sbin/invoke-rc.d /usr/sbin/invoke-rc.d.temp && \
+    mv -vi /usr/sbin/policy-rc.d /usr/sbin/policy-rc.d.temp && \
     apt-get -y --install-recommends install citadel-server && \
     ( /etc/init.d/citadel stop || true ) && \
-    mv -vi /usr/sbin/invoke-rc.d.tmp /usr/sbin/invoke-rc.d && \
+    mv -vi /usr/sbin/policy-rc.d.temp /usr/sbin/policy-rc.d && \
     apt-get -y install citadel-suite && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY scripts/ /usr/local/bin/
