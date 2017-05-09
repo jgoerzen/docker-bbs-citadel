@@ -22,7 +22,8 @@ COPY scripts/ /usr/local/bin/
 COPY supervisor/ /etc/supervisor/conf.d/
 COPY setup/ /tmp/setup/
 RUN /tmp/setup/setup.sh && rm -r /tmp/setup
+COPY inetd.conf /etc/inetd.conf
 
-EXPOSE 5901
+EXPOSE 80 443 23 993 995 2020 5222 587 110 143 465 504 25
 CMD ["/usr/local/bin/boot-supervisord"]
 
