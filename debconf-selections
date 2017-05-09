@@ -1,0 +1,18 @@
+citadel-server	citadel/Password_again	password	thav7phaibohp8Iriengieh
+citadel-server	citadel/Password	password	thav7phaibohp8Iriengieh
+citadel-server	citadel/LDAPServer	string	0.0.0.0
+citadel-webcit	citadel/WebcitApacheIntegration	select	Internal
+citadel-server	citadel/LoginType	select	Internal
+# Webcit HTTP port:
+citadel-webcit	citadel/WebcitHttpPort	string	80
+citadel-server	citadel/Administrator	string	admin
+citadel-server	citadel/ServerIPAddress	string	0.0.0.0
+# Limit Webcit's login language selection
+citadel-webcit	citadel/WebcitOfferLang	select	en_GB
+citadel-server	citadel/LDAPServerPort	string	389
+# Webcit HTTPS port:
+citadel-webcit	citadel/WebcitHttpsPort	string	443
+citadel-server	citadel/BadUser	error	
+citadel-server	citadel/LDAPBindDN	string	
+citadel-server	citadel/LDAPBindDNPassword	string	OpenSesame
+citadel-server	citadel/LDAPBaseDN	string	dc=example,dc=com
